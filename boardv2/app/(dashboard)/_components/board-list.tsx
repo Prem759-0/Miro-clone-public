@@ -79,7 +79,7 @@ if (data === undefined) {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 mt-8 pb-10">
                 {!query.favorites && (
-                 <NewBoardButton orgId={orgId}  />
+                 <NewBoardButton orgId={orgId} disabled={false}  />
                 )}
                 {data?.map((board)=>(
                     <BoardCard

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import {Suspense} from "react"
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { Toaster } from "sonner";
 import { ModalProvider } from "@/providers/modal-provider";
+import {Loading} from "@/components/auth/loading"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,11 +28,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}  suppressHydrationWarning>
+          <Suspense fallback={<Loading/>}>
+
         <ConvexClientProvider>
           <Toaster/>
           <ModalProvider/>
           {children}
         </ConvexClientProvider>
+          </Suspense>
       </body>
     </html>
   );

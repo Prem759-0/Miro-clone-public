@@ -427,6 +427,15 @@ const deleteLayers = useDeleteLayers();
 
 useEffect(() => {
   function onKeyDown(e: KeyboardEvent) {
+    const target = e.target as HTMLElement;
+
+    const isTyping =
+      target.tagName === "INPUT" ||
+      target.tagName === "TEXTAREA" ||
+      target.isContentEditable;
+
+    if (isTyping) return;
+
     switch (e.key.toLowerCase()) {
       case "backspace": {
         e.preventDefault();
@@ -454,6 +463,7 @@ useEffect(() => {
     document.removeEventListener("keydown", onKeyDown);
   };
 }, [deleteLayers, history]);
+
 
 
   return (
