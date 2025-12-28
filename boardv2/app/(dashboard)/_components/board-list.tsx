@@ -23,7 +23,10 @@ export const BoardList = ({
     query,
 }: BoardListProps) => {
 
-    const data = useQuery(api.boards.get, {orgId});
+    const data = useQuery(api.boards.get, {
+        orgId,
+        ...query
+    });
 
 if (data === undefined) {
   return (
@@ -39,7 +42,9 @@ if (data === undefined) {
           gap-5 mt-8 pb-10
         "
       >
-        <NewBoardButton orgId={orgId} disabled/>
+        {!query.favorites && (
+         <NewBoardButton orgId={orgId} disabled/>
+        )}
 
         {Array.from({ length: 5 }).map((_, i) => (
           <BoardCard.Skeleton key={i} />
@@ -73,7 +78,9 @@ if (data === undefined) {
             </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 mt-8 pb-10">
-                <NewBoardButton orgId={orgId}  />
+                {!query.favorites && (
+                 <NewBoardButton orgId={orgId}  />
+                )}
                 {data?.map((board)=>(
                     <BoardCard
                      key={board._id}
@@ -84,7 +91,7 @@ if (data === undefined) {
                      orgId={board.orgId}
                      authorName={board.authorName}
                      createdAt={board._creationTime}
-                     isFavorite={false}
+                     isFavorite={board.isFavorite}
                     />
                 ))}
             </div> 

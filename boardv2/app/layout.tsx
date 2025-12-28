@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { Toaster } from "sonner";
+import { ModalProvider } from "@/providers/modal-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={inter.className}  suppressHydrationWarning>
         <ConvexClientProvider>
           <Toaster/>
+          <ModalProvider/>
           {children}
         </ConvexClientProvider>
       </body>
