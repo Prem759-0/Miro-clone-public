@@ -9,6 +9,7 @@ import { EmptySearch } from "./empty-search";
 import { api } from "@/convex/_generated/api";
 import { BoardCard } from "./board-card";
 import { NewBoardButton } from "./new-board-button";
+import { Doc } from "@/convex/_generated/dataModel";
 
 interface BoardListProps{
     orgId: string;
@@ -17,6 +18,8 @@ interface BoardListProps{
         favorites? : string;
     };
 }
+
+type BoardWithFavorite = Doc<"boards"> & { isFavorite: boolean };
 
 export const BoardList = ({
     orgId, 
@@ -81,7 +84,7 @@ if (data === undefined) {
                 {!query.favorites && (
                  <NewBoardButton orgId={orgId} disabled={false}  />
                 )}
-                {data?.map((board)=>(
+                {data?.map((board: BoardWithFavorite)=>(
                     <BoardCard
                      key={board._id}
                      id={board._id}
