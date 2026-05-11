@@ -84,7 +84,16 @@ if (data === undefined) {
                 {!query.favorites && (
                  <NewBoardButton orgId={orgId} disabled={false}  />
                 )}
-                {data?.map((board)=>(
+                {data?.map((board: {
+                    _id: string;
+                    title: string;
+                    authorName: string;
+                    authorId: string;
+                    _creationTime: number;
+                    imageUrl: string;
+                    orgId: string;
+                    isFavorite: boolean;
+                })=>(
                     <BoardCard
                      key={board._id}
                      id={board._id}
