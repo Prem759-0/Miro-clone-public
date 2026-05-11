@@ -29,7 +29,7 @@ export const BoardList = ({
 
 if (data === undefined) {
   return (
-    <div className="relative">
+    <div className="relative min-h-[400px]">
       <h2 className="text-3xl font-semibold">
         {query.favorites ? "Favorite boards" : "Team boards"}
       </h2>
@@ -40,7 +40,7 @@ if (data === undefined) {
 
       <div
         className="
-          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 
+          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4
           lg:grid-cols-5 xl:grid-cols-6
           gap-5 mt-8 pb-10 opacity-50
         "
